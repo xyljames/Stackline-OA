@@ -1,0 +1,60 @@
+
+
+<div class="container" *ngIf="charts">
+
+  <!-- optional for add additional Charts by URLS -->
+  <!-- <h3>Charts</h3>
+  <ul>
+    <li (click)="delChart(i)" *ngFor="let item of charts | async; let i = index">
+      <a [href]="item.url" target="_blank">{{i+1}}:{{ item.name }}</a>
+    </li>
+  </ul> -->
+
+</div>
+<div *ngIf="chart">
+  <canvas id="canvas">{{ chart }}</canvas>
+</div>
+
+
+<div class="container" *ngIf="charts">
+    <table class="table table-striped" [mfData]="data" #mf="mfDataTable" [mfRowsOnPage]="5">
+    <thead>
+        <tr>
+            <th style="width: 20%">
+                <mfDefaultSorter by="weekEnding">Week Ending</mfDefaultSorter>
+            </th>
+            <th style="width: 20%">
+                <mfDefaultSorter by="retailSales">Retail Sales</mfDefaultSorter>
+            </th>
+            <th style="width: 20%">
+                <mfDefaultSorter by="wholesaleSales">Wholesales Sales</mfDefaultSorter>
+            </th>
+            <th style="width: 20%">
+                <mfDefaultSorter by="unitsSold">Unit Sold</mfDefaultSorter>
+            </th>
+            <th style="width: 20%">
+              <mfDefaultSorter by="retailerMargin">Retailer Margin</mfDefaultSorter>
+          </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let item of mf.data">
+            <td>{{item.weekEnding}}</td>
+            <td>{{item.retailSales }}</td>
+            <td>{{item.wholesaleSales }}</td>
+            <td>{{item.unitsSold }}</td>
+            <td>{{item.retailerMargin }}</td>
+        </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="4">
+                    <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
+                </td>
+            </tr>
+        </tfoot>
+      </table>
+    </div>
+
+
+
